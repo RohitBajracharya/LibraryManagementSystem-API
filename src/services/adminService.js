@@ -9,13 +9,14 @@ const SECRET_KEY = process.env.SECRET_KEY
 
 const doesUserExist = async (email) => {
     try {
-        const admin = await user.findOne({ email })
+        const adminExist = await user.findOne({ email })
+        if (adminExist) return true
+        return false
     } catch (error) {
         console.log(error);
         throw error
     }
-    if (user) return true
-    return false
+
 }
 
 const getHashedPassword = async (password) => {
@@ -61,9 +62,9 @@ const findUserByEmail = async (email) => {
     }
 }
 
-const comparePassword=async(inputPassword,dbPassword)=>{
+const comparePassword = async (inputPassword, dbPassword) => {
     try {
-        return await bcrypt.compare(inputPassword,dbPassword);
+        return await bcrypt.compare(inputPassword, dbPassword);
     } catch (error) {
         console.log(error);
         throw error

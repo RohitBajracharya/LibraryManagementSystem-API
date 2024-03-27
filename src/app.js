@@ -3,6 +3,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
 const adminRoute = require("./routes/adminRoute")
+const categoryRoute = require("./routes/categoryRoute")
 
 const app = express()
 dotenv.config()
@@ -23,4 +24,6 @@ mongoose.connect(MONGOURL).then(() => {
     console.log(error)
 })
 
+
 app.use("/admin", adminRoute)
+app.use("/category",categoryRoute)

@@ -23,7 +23,7 @@ const signIn = async (req, res) => {
     try {
         const userExist = await doesUserExist(email);
         if (!userExist) {
-            return res.status(404).message({ message: "User doesn't exist" })
+            return res.status(404).json({ message: "User doesn't exist" })
         }
         const existingUser = await findUserByEmail(email);
         const matchPassword = await comparePassword(password, existingUser.password)
