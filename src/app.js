@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 const cors = require("cors")
 const adminRoute = require("./routes/adminRoute")
 const categoryRoute = require("./routes/categoryRoute")
+const bookRoute = require("./routes/bookRoute")
 
 const app = express()
 dotenv.config()
@@ -26,4 +27,5 @@ mongoose.connect(MONGOURL).then(() => {
 
 
 app.use("/admin", adminRoute)
-app.use("/category",categoryRoute)
+app.use("/category", categoryRoute)
+app.use("/books", bookRoute)

@@ -1,8 +1,8 @@
-const category = require("../models/category")
+const Category = require("../models/category")
 
 const getAllCategory = async () => {
     try {
-        return await category.find()
+        return await Category.find()
     } catch (error) {
         console.log(error);
         throw error;
@@ -11,7 +11,7 @@ const getAllCategory = async () => {
 
 const doesCategoryExist = async (name) => {
     try {
-        const categoryExist = await category.findOne({ name })
+        const categoryExist = await Category.findOne({ name })
         if (categoryExist) return true
         return false
 
@@ -24,7 +24,7 @@ const doesCategoryExist = async (name) => {
 
 const saveCategory = async (name, bookQuantity) => {
     try {
-        const newCategory = new category({
+        const newCategory = new Category({
             name: name,
             bookQuantity: bookQuantity
         });
@@ -41,7 +41,7 @@ const editCategoryById = async (name, bookQuantity, categoryId) => {
             name: name,
             bookQuantity: bookQuantity
         };
-        return await category.findByIdAndUpdate(categoryId, newCategory, { new: true })
+        return await Category.findByIdAndUpdate(categoryId, newCategory, { new: true })
     } catch (error) {
         console.log(error)
         throw error
@@ -51,7 +51,16 @@ const editCategoryById = async (name, bookQuantity, categoryId) => {
 
 const deleteCategoryById = async (categoryId) => {
     try {
-        return await category.findByIdAndDelete(categoryId)
+        return await Category.findByIdAndDelete(categoryId)
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+const findCategoryByName = async (name) => {
+    try {
+        return await Category.findOne({ name })
     } catch (error) {
         console.log(error)
         throw error
@@ -67,4 +76,5 @@ module.exports = {
     saveCategory,
     editCategoryById,
     deleteCategoryById,
+    findCategoryByName,
 }

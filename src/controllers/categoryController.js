@@ -1,5 +1,4 @@
-const category = require("../models/category");
-const { getAllCategory, saveCategory, doesCategoryExist, editCategoryById, deleteCategoryById, } = require("../services/categoryService");
+const { getAllCategory, saveCategory, doesCategoryExist, editCategoryById, deleteCategoryById, findCategoryByName } = require("../services/categoryService");
 
 
 const getCategory = async (req, res) => {
@@ -51,6 +50,9 @@ const deleteCategory = async (req, res) => {
         res.status(500).json({ message: "Failed to delete category" })
     }
 }
+
+
+
 
 module.exports = {
     getCategory,
